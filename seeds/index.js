@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
+const dbUrl = process.env.DB_URL;
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -16,27 +17,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     })
 mongoose.set('strictQuery', false);
 
-// const seedDB = async () => {
-//     await Campground.deleteMany({});
-//     const c = new Campground({ title: 'purple field' });
-//     await c.save();
-// }
-
-// seedDB(); This was to check whether the database was connected and data being added
-
-// To pick a random element from an array an easy way of doing it is by picking a random number and multiplying
-// it with the length of the array and floor it and access it out of the array
-// array[Math.floor(Math.random() * array.length)]
 
 const sample = array => array[Math.floor(Math.random() * array.length)];
-// The above function is the same as the one below 
-// const sample = function (array) {
-//     return array[Math.floor(Math.random() * array.length)];
-// }
 
-// We are saving the code to pick a random element from an array to a function and declaring it in a
-// variable called sample. Then we are passing the arrays places and descriptors that we required as
-// arguments in the sample function.
 
 const seedDB = async () => {
     await Campground.deleteMany({});
@@ -71,7 +54,7 @@ const seedDB = async () => {
                 }
             ]
         })
-        // console.log(camp);
+
         await camp.save()
     }
 }
@@ -80,6 +63,5 @@ seedDB().then(() => {
     mongoose.connection.close()
 })
 
-// We have updated all the campgrounds in our database after adding the user reference in the campground
-// model and adding it here.
+
 

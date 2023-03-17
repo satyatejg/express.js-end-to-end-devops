@@ -24,14 +24,7 @@
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Add More Images</label>
                     <input type="file" class="form-control" id="formFileMultiple" name="image" multiple>
-                    <!-- <div class="invalid-feedback">
-                        This campground would look much better with a picture.
-                    </div> -->
                 </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="image">Add Images</label>
-                    <input type="file" name="image" id="image" multiple>
-                </div> -->
                 <div class="mb-3">
                     <label class="form-label" for="price">Campground Price</label>
                     <div class="input-group mb-3">
@@ -69,17 +62,3 @@
             <a href="/campgrounds/<%= campground._id %>">Back To Campground</a>
         </div>
     </div>
-    <!-- The value attribute in input element prepopulates the form -->
-    <!-- To delete images, we added a new div in which we iterated over campgrounds.images using forEach
-    array callback method and passed in image and index as arguments. Inside this we added an img element
-    with the source img.url and a class  of img-thumbnail to reduce the size of the images. We are displaying
-    all the images that we saved for one campground in the edit page. then we added a input type checkbox 
-    inside the div with a class form-check-inline. We gave the checkbox a name deleteImages[] which is very
-    important as forms with the name attribute will have their values passed after submitting it and also
-    for joi validation. So we added deleteImages: Joi.array() in joi schema to not cause an error when
-    submitting the form. We added a label to associate it with the input checkbox. We added 'id' and 'for'
-    attribute in input and label to link them and passed the index since this is an array to loop over images
-    We set each checkbox to have a different value  -->
-
-    <!-- We changed img.url to img.thumbnail after adding the virtual property in our CampgroundSchema
-    to ImageSchema to reduce the image size coming from cloudinary -->

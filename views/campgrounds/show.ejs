@@ -60,10 +60,6 @@
                 <h2>Leave A Review</h2>
                 <form action="/campgrounds/<%= campground._id %>/reviews" method="POST" class="mb-3 validated-form"
                     novalidate>
-                    <!-- <div class="mb-3">
-                    <label class="form-label" for="rating">Rating</label>
-                    <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-                </div> -->
                     <div class="mb-3">
                         <fieldset class="starability-basic">
                             <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
@@ -100,7 +96,6 @@
                                 <p class="starability-result" data-rating="<%= review.rating %>">
                                     Rated: <%= review.rating %> stars
                                 </p>
-                                <!-- <h6 class="card-subtitle mb-2 text-muted">By <%= review.author.username %></h6> -->
                                 <p class="card-text">Review: <%= review.body %>
                                 </p>
                                 <% if(currentUser && review.author.equals(currentUser._id)) {%>
@@ -122,61 +117,3 @@
     </script>
     
     <script src="/javascripts/showPageMap.js"></script>
-
-
-
-    <!-- In the edit and delete buttons, the conditional is that if the currenUser exists and if the 
-    campround.author is equal to the currentUser._id since campground.author is an object id and
-    currentUser is the property that we defined on the locals object and equated it to req.user. We
-    are also adding the conditional if the currentUser exists because when nobody signs in the currentUser
-    will be undefined and this will break the app. Even though we are preventing an unauthorized user
-    from editing and deleting a campground on the client side, somebody can send a put or delete request
-    from postman or hoppscotch to make changes to any campground. A user who is logged in and is not
-    authorized to edit a campground can just type in /edit after the campground id in the url and it'll
-    take him to that campgorund edit page. -->
-
-    <!-- We are rendering the form for a user to leave a review only if the user is logged in by using
-    the conditional if and passing in the argument currenUser which is available on all the templates
-    which we defined in the locals object and equated it to req.user. req.user will only exist if
-    someone logs in -->
-
-    <!-- We created a new stylesheet called stars.css in the stylesheets folder located in the public
-    folder. We copied the contents of stars.css from the github file provided by the tutor and we added
-    a link to that file here inside the body instead of the boilerplate since we want the stars for
-    rating to show up only in this page. We then copied a paragraph from the github docs of this stylesheet
-    which displays the number of stars based on the rating of a user. In the data-rating attribute in the
-    paragraph we added review.rating to dispaly the stars. We replaced the range slider in the form that
-    posts the review with stars that a user can click. We copied this html from the docs of starability
-    and made some changes -->
-
-    <!-- After changing the campgroundschema to include an array in the image property in which we added
-    a url and filename, to display the image we dont use campground.image which is the old schema but
-    we'll loop over campground.images by let img of campground.images because there are going to be 
-    multiple images if the user wants to upload and then we'll display the image by img.url -->
-
-    <!-- We copied the carousel code from bootstrap 5 which allows us to display images in slides
-    Instead of using for (let blah of blahs) method, we used forEach array callback method to iterate
-    over images because there is a class 'active' from bootstrap which comes with this bootstrap carousel
-    code, which appears as a class only on the first div of the img element which makes the first image
-    the active one. Since we do not have multiple divs for images and we are looping over images this
-    'active' class will appear on all divs and this doesnt allow us to click on the control buttons to
-    move to the next image. So we applied the logic that if 'i' i.e index is zero i.e. the first element 
-    of the array, make the class active, else leave it blank using ternary operator. -->
-
-    <!-- To show a map we use mapbox GL JS api or map library. This is the tool that we use to render 
-    interactive maps. We have to copy the javascript and css files from mapbox website and paste them in 
-    our boilerplate. After copying the link and script, we have to copy the code i.e. the script which 
-    allows the map to be displayed in the campgrounds show page. We have to enter our public access token 
-    in this script for the map to show to be rendered. We moved the code to showPageMap.js in public folder
-    after writing the above notes -->
-
-    <!-- We will not be able to use the  access token in javascript file 'showPageMap.js' in the public 
-    folder because ejs takes the template and runs over it and finds all the instances of the ejs syntax 
-    and renders regular html. So it doesnt go into our javascript file and look for ejs syntax in the script
-    that we included. So, We need to get our access token from the ejs file to our javascript file. So we
-    made a new script and saved our access token inside of ejs tag in the variable mapToken. SO, this will
-    run first and spit out the access token and we can access this token in the js file by referencing the
-    variable mapToken -->
-
-    <!-- To add a marker to the map, https://docs.mapbox.com/mapbox-gl-js/example/add-a-marker/ we use a 
-    Marker method -->

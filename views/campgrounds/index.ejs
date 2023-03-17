@@ -16,7 +16,6 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title"><%=campground.title%></h5>
-                        <!-- <h5 class="card-title"><%=campground.properties.popUpMarkup%></h5> -->
                         <p class="card-text"><%=campground.description%></p>
                         <p class="card-text">
                             <small class="text-muted">
@@ -38,9 +37,3 @@
 
 
 <script src="/javascripts/clusterMap.js"></script>
-
-<!-- All this content is going to be passed to the boilerplate template as body and will be inserted. We
-used to have a ul with an li consisting a href="/campgrounds/< campground._id %>" in which campground.title
-was placed. We removed that and added these new elements. -->
-<!-- We are adding cluster map to our index page, so first we created a div with the id of map which we got
-from https://docs.mapbox.com/mapbox-gl-js/example/cluster/ -->

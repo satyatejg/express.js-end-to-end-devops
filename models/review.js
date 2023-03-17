@@ -12,5 +12,3 @@ const reviewSchema = new Schema({
 
 module.exports = mongoose.model('Review', reviewSchema);
 
-// We have added the author property in the reviewSchema to associate a particular review to a specific
-// author. We did this during lecture 526.

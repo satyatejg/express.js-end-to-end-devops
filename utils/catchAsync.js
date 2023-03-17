@@ -3,5 +3,3 @@ module.exports = func => {
        func(req, res, next).catch(next)
     }
 }
-
-// This is the parent function that wraps around all our async functions. 
