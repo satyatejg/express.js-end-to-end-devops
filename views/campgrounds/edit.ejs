@@ -1,0 +1,85 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+    <div class="row">
+        <h1 class="text-center">Edit Campground</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate
+                class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" name="campground[title]" id="title"
+                        value="<%=campground.title%>" required>
+                    <div class="valid-feedback">
+                        Adhi.!! Atta Raayaala
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" name="campground[location]" id="location"
+                        value="<%=campground.location%>" required>
+                    <div class="valid-feedback">
+                        Adhi.!! Atta Raayaala
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Add More Images</label>
+                    <input type="file" class="form-control" id="formFileMultiple" name="image" multiple>
+                    <!-- <div class="invalid-feedback">
+                        This campground would look much better with a picture.
+                    </div> -->
+                </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="image">Add Images</label>
+                    <input type="file" name="image" id="image" multiple>
+                </div> -->
+                <div class="mb-3">
+                    <label class="form-label" for="price">Campground Price</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="price-label">Rs</span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                            aria-describedby="price-label" name="campground[price]" value="<%=campground.price%>"
+                            required>
+                        <div class="valid-feedback">
+                            Adhi.!! Atta Raayaala
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" name="campground[description]" id="description"
+                        required><%=campground.description%> </textarea>
+                    <div class="valid-feedback">
+                        Adhi.!! Atta Raayaala
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <% campground.images.forEach(function(img, i) { %>
+                        <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="image-<%= i %>" name="deleteImages[]"
+                                value="<%= img.filename %>">
+                        </div>
+                        <label for="image-<%= i %>">Delete?</label>
+                        <% }) %>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Campground</button>
+                </div>
+            </form>
+            <a href="/campgrounds/<%= campground._id %>">Back To Campground</a>
+        </div>
+    </div>
+    <!-- The value attribute in input element prepopulates the form -->
+    <!-- To delete images, we added a new div in which we iterated over campgrounds.images using forEach
+    array callback method and passed in image and index as arguments. Inside this we added an img element
+    with the source img.url and a class  of img-thumbnail to reduce the size of the images. We are displaying
+    all the images that we saved for one campground in the edit page. then we added a input type checkbox 
+    inside the div with a class form-check-inline. We gave the checkbox a name deleteImages[] which is very
+    important as forms with the name attribute will have their values passed after submitting it and also
+    for joi validation. So we added deleteImages: Joi.array() in joi schema to not cause an error when
+    submitting the form. We added a label to associate it with the input checkbox. We added 'id' and 'for'
+    attribute in input and label to link them and passed the index since this is an array to loop over images
+    We set each checkbox to have a different value  -->
+
+    <!-- We changed img.url to img.thumbnail after adding the virtual property in our CampgroundSchema
+    to ImageSchema to reduce the image size coming from cloudinary -->

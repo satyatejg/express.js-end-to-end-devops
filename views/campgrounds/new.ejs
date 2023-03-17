@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate.ejs') %>
+    <div class="row">
+        <h1 class="text-center">New Campground</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" name="campground[title]" id="title" required>
+                    <div class="valid-feedback">
+                        Adhi.!! Atta Raayaala
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" name="campground[location]" id="location" required>
+                    <div class="valid-feedback">
+                        Idhi manchi oorey!!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Upload Images</label>
+                    <input type="file" class="form-control" id="formFileMultiple" name="image" multiple>
+                    <div class="invalid-feedback">
+                        This campground would look much better with a picture.
+                    </div>
+                </div>
+                <!-- <div class="form-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text">Choose imagesss</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div> -->
+
+                <!-- <input type="file" name="image" multiple> -->
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="text" name="campground[image]" id="image" required>
+                    <div class="valid-feedback">
+                        Bomma baley undhi ley!!
+                    </div>
+                </div> -->
+                <div class="mb-3">
+                    <label class="form-label" for="price">Campground Price</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="price-label">Rs</span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                            aria-describedby="price-label" name="campground[price]" required>
+                    </div>
+                    <div class="valid-feedback">
+                        Marii antha kareedhem kaadhuley!!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" name="campground[description]" id="description"
+                        required></textarea>
+                    <div class="valid-feedback">
+                        Inka cheppu e pradesham visheshalu
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Add Campground</button>
+                </div>
+
+            </form>
+            <a href="/campgrounds">All Campgrounds</a>
+        </div>
+    </div>
+
+    <!-- We added the required attribute to all the inputs, but we also added a 'novalidate' attribute to 
+    the form element because we want bootstrap to takeover the validation process. For that we need to add
+    javascript and this prevents us from submitting the form when fields are invalid. We copied this 
+    javascript from bootstrap 5, validation under form category and moved it into boilerplate.js-->
+
+    <!-- Every form we have done so far is a url encoded form. But to upload files we have to set the 
+    encoding type i.e. the enctype attribute to the form to be multipart/form-data. Then we add an input
+    type of file. The attribute multiple will allow us to upload multiple images -->
