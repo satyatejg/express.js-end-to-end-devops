@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-app
+  labels:
+    app: express-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express-app
+  template:
+    metadata:
+      labels:
+        app: express-app
+    spec:
+      containers:
+      - name: express-app
+        image: fedsatya/express-app:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 3000
+        envFrom:
+          - secretRef:
+              name: express-secret
+
