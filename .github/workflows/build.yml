@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
+    paths-ignore:
       - 'k8s/**'
       - 'helm/**'
       - 'README.md'
