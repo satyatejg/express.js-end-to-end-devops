@@ -29,6 +29,12 @@ jobs:
 
       - name: Run tests
         run: npm test
+        env: 
+          CLOUDINARY_CLOUD_NAME: abcdefgh
+          CLOUDINARY_KEY: 1234567890
+          CLOUDINARY_SECRET: abcdefgijklmnopq
+          DB_URL: mongodb+srv://fedsatya:345
+          MAPBOX_TOKEN: abcdefg
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
